@@ -26,7 +26,20 @@ public class PlayerController : MonoBehaviour
             transform.position.y,
             transform.position.z),
             movementSpeed * Time.deltaTime
-            );
+        );
+
+        if(Input.GetButtonDown("Fire1")){
+            Time.timeScale = 1.5f;
+        }
+        if(Input.GetButtonUp("Fire1")){
+            Time.timeScale = 1f;
+        }
+        if(Input.GetButtonDown("Fire2")){
+            Time.timeScale = 0.5f;
+        }
+        if(Input.GetButtonUp("Fire2")){
+            Time.timeScale = 1f;
+        }
     }
 
 }
