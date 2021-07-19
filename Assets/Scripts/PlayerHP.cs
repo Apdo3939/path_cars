@@ -8,13 +8,16 @@ public class PlayerHP : MonoBehaviour
     public GameObject particleObject;
     public PlayerController playerController;
 
+    public ScoreController scoreController;
+
     [Space(10)]
     public GameObject gameOverPanelObject;
-    public float timeToShowGameOver = 5.0f;
+    public float timeToShowGameOver = 2.0f;
 
     void OnCollisionEnter(Collision collision)
     {
-        if(!collision.gameObject.CompareTag("Enemy")){
+        if (!collision.gameObject.CompareTag("Enemy"))
+        {
             return;
         }
 
@@ -23,10 +26,12 @@ public class PlayerHP : MonoBehaviour
         playerController.enabled = false;
         carObject.SetActive(false);
         GetComponent<BoxCollider>().enabled = false;
+        scoreController.startScore = false;
         StartCoroutine(ShowGameOver());
     }
 
-    IEnumerator ShowGameOver(){
+    IEnumerator ShowGameOver()
+    {
         yield return new WaitForSeconds(timeToShowGameOver);
         gameOverPanelObject.SetActive(true);
     }
